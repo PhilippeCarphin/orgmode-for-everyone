@@ -6,8 +6,5 @@ cd $plugin_dir
 git clone https://github.com/masukomi/vim-markdown-folding
 git clone https://github.com/jceb/vim-orgmode
 git clone https://github.com/tpope/vim-speeddating
-echo "Add 'autocmd FileType markdown set foldexpr=NestedMarkdownFolds' to vimrc (y or n)";  read answer
-if [[ $answer == "y" ]] ; then
-    echo "autocmd FileType markdown set foldexpr=NestedMarkdownFolds()" >> $HOME/.vimrc
-    tail ~/.vimrc
-fi
+echo "autocmd FileType markdown set foldexpr=NestedMarkdownFolds()" >> $HOME/.vimrc
+echo "let g:org_export_emacs=\"~/.local/bin/emacs\"" >> $HOME/.vimrc
