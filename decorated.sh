@@ -1,3 +1,4 @@
+#!/bin/bash
 cd /home/phc001/Documents/GitHub/pres-org ; echo "[32;1m$[34m #!/bin/bash [0;m"
 echo "[32;1m$[34m # Script decorated by https://gitlab.science.gc.ca/phc001/ord_run/blob/master/gitlab/gitlab.go [0;m"
 echo "[32;1m$ plugin_dir=\"\$HOME/.vim/pack/vendor/start\" [0;m" ; plugin_dir="$HOME/.vim/pack/vendor/start"
