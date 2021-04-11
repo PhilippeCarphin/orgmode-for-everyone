@@ -1,0 +1,444 @@
+#+TITLE: Orgmode presentation
+#+REVEAL_HLEVEL: 4
+
+
+* Real intro
+
+** Documents as trees
+
+See =vim-documentation-cheat-sheet=.
+
+*** Importance of folding
+
+Folding is nice
+
+7 things quote
+
+Nested foldint
+
+**** Markdown documentation
+Consider this documentation written in markdown
+[[https://gitlab.science.gc.ca/phb001/tunnel-cmc/blob/master/README.md][CMC SSH documentation tunnel ]]
+([[https://gitlab.science.gc.ca/phb001/tunnel-cmc/raw/master/README.md][raw download link]])
+
+Raw markdown link for wget
+
+**** Folding
+
+- No folding
+- With folding
+- With nested folding
+
+In vim, folded, with [[https://github.com/masukomi/vim-markdown-folding][=vim-markdown-folding=]]
+#+begin_src vimrc
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+#+end_src
+
+*** Orgmode
+
+- Nested folding out of the box
+
+** Orgmode syntax
+
+<Somewhere in here, switch to emacs>
+
+Write one or two src blocks by hand, make a vimr\c 
+
+** Exporting to HTML (and other formats)
+
+
+
+
+
+* Introduction
+:PROPERTIES:
+:objective: no barrier to use for vim users
+:END:
+
+Basically ...
+
+it's like markdown with different symbols ...
+
+I'm going to show you how I, as an advanced vim user
+** Kind of like markdown
+*** Basic markup
+
+| markdown | orgmode | description               |
+| ~`...`~  | ~=...=~ | Code                      |
+| ~*...*~  | ~*...*~ | Bold                      |
+| ~_..._~  | ~/.../~ | Itallic                   |
+| =~...~=  | =~...~= | Verbatim (alternate code) |
+
+*** Code blocks
+Markdown
+#+begin_src markdown
+```
+git status
+```
+#+end_src
+Orgmode
+
+#+begin_src markdown
+,#+begin_src shell
+git status
+,#+end_src
+#+end_src
+
+** Cool stuff
+
+*** Literate programming
+
+*** Knowledge organization
+
+*** Document publishing
+  
+The main thing is that it handles all the languages in a harmonious way.
+
+#+reveal: split
+- Programming languages : an orgmode file is basically a multilanguage jupyter notebook.
+#+reveal: split
+- Publishing : Language agnostic documents.  Using an orgmode file as the main
+source format, we can publish to
+  #+attr_reveal: :frag (appear)
+  - LaTeX (and pdf)
+  - HTML
+  - Twitter Bootstrap styled HTML
+  - Restructured Text (RST)
+  - Man page (roff)
+  - Reveal.js
+  - Beamer
+  - Markdown
+  - Github flavored markdown
+#+reveal: split
+- Generate files from orgmode documents.
+
+
+** References
+*** Orgmode is legit
+For credibility, let me cite a couple things:
+- Carsten Dominik YouTube Google Tech talk
+- the paper
+  
+*** Orgmode is mainstream
+
+- On github and gitlab, your readme can be an orgmode file and the web interface
+will render it the same way as it would render a Markdown file
+- vim has orgmode syntax highlighting and a plugin
+=https://github.com/jceb/vim-orgmode= that improves support and gives folding
+features that I find are a bit better than =https://github.com/nelstrom/vim-markdown-folding=
+- VSCode has an actively maintained extension =vscode-org-mode= that is really
+good.
+- Atom has one too
+- beorg.com is a free IOS app that is crazy good!
+
+*** Org is nothing special
+
+Aside from installing packages for cool export formats, nothing I do will
+require customization of anything.
+
+** How does a vim user cope with emacs
+
+*** What's the problem
+
+Even if we have evil-mode, trust me, emacs can be a real pain.
+
+- Buffers popping up
+- getting stuck in modes
+
+*** Solutions
+
+Here is how I get by in Emacs
+
+- Learn a couple of emacs keys (evil-mode saves me from learning a lot of them,
+it's worth it to learn about 10 keys)
+  1. =C-x 1= : Maximize the current pane
+  2. =C-x o= : Other buffer (switch between the two most recent buffers)
+  3. =C-{n,p}= : Next/Previous line.
+  4. =C-x b= : Buffer list to switch between open buffers
+  5. =M-x= : 
+- Use Phil's pre-made config specially crafted over years and refined over the last couple months with the help of Sébastien Fortier and François Fortin.
+  
+  - My config turns your emacs into an orgmode editor that you will never have
+to configure unless you want to do so.
+
+
+
+
+* New Introduction
+- Start by talking about folding
+  - Vim:
+    - Install vim-markdown-folding and =autocmd FileType markdown set foldexpr=NestedMarkdownFold()= in =~/.vimrc=
+    - Install vim-orgmode and vim-speeddating
+  - VSCode
+    - Vim (by vscodevim)
+    - Markdown All in One (by Yu Zhang)
+    - Org Mode (by vscode-org-mode)
+  - Emacs
+    - Install markdown-mode
+    - Orgmode support is built-in
+- Orgmode is like markdown
+  - Demo in vim
+  - Demo in VSCode
+  - Demo in Emacs (show =C-c ,= in emacs)
+- Orgmode does cool stuff
+  - Running code
+  - Exporting
+  - More complex stuff
+  - Using emacs as an orgmode editor
+    - Spend Zero time configuring emacs!
+    - Small carefully curated set of functions
+    - Sébastien Fortier and François Fortin
+
+* New First thing after intro
+
+- Demo of running code
+  - ls, git status
+
+- Demo of exporting
+  - Live write some explanations about CMake
+    
+- Demo tangle
+  - My ssy config
+
+- Demo complex
+  - makefile thing like in my tutorials
+
+* Wow, that was so cool, how can I get started
+
+- Talk about the emacs-config of a lifetime
+* Setup
+
+Popular editors that know orgmode
+[[https://beorgapp.com/support/editingfiles/][beorgapp.com: Editing orgmode files on a computer]]
+
+** Vim
+
+#+begin_src shell :results output
+mkdir -p ~/.vim/pack/demo/start
+cd ~/.vim/pack/demo/start
+git clone https://github.com/tpope/vim-speeddating
+git clone https://github.com/jceb/vim-orgmode
+#+end_src
+
+No need to configure anything, vim 8+ autoloads plugins from
+=~/.vim/pack/*/start= (the ="demo"= could have been anything).
+
+** VSCode
+
+In the extensions section, look for =vscode-org-mode= version =1.0.0= (make sure not to get the =0.5.0= which may show up earlier).
+
+** Emacs
+
+Emacs has built-in support for orgmode.  For extra orgmode export formats see references.
+
+
+* Writing orgmode
+
+* Why orgmode
+
+** Exporting
+
+** Planning
+
+** Knowledge organization
+
+* Demos
+
+Following along:
+
+#+begin_src 
+if [ -e ~/.emacs.d ] ; then mv ~/.emacs.d ~/.emacs.d.bak ; fi
+if [ -e ~/.emacs ] ; then mv ~/.emacs ~/.emacs.bak ; fi
+git clone ... ~/.emacs.d
+#+end_src
+
+* Cheat sheet
+
+=C-x 1=, =C-x 0=
+
+=C-h k=, =C-h o=,
+
+=C-c C-c=, =C-c C-,=,
+
+=C-x C-f=, =C-x C-b=,
+
+=C-p=, =C-n=
+
+Extra 
+
+=M-S-<left/right>= promote/demote subtree
+
+* Config
+** Configs
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/evil-config.el][evil-config.el]]       | 42 | Install and configure evil-mode                 |
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/org-export-config.el][org-export-config.el]] | 19 | Install packages for exporting to other formats |
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/basic-configs.el][basic-configs.el]]     | 31 | Make emacs normales                             |
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/babel-config.el][babel-config.el]]      |  5 | Activate babel because it is not on by default  |
+
+There is nothing that is "personal" to me in these config files.  They were made
+to be used by other people and have been tested by myself (advanced experienced
+vim user), François Fortin (intermediate experienced vim user) Sébastien
+Fortier (non-vim non-emacs user and Michel Van Eeckhout (emacs user).
+** complete config
+:PROPERTIES:
+:header-args: :tangle ~/.emacs.d/init.el
+:end:
+
+*** Add package repositories
+#+begin_src emacs-lisp
+;; Package bootstrap
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org"   . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("gnu"   . "http://elpa.gnu.org/packages/") t)
+(package-initialize)
+#+end_src
+*** Install =use-package= so we don't have to do this 'install if not installed'
+thing over and over again.
+#+begin_src emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile (require 'use-package))
+#+end_src
+*** Add cool export formats
+#+begin_src emacs-lisp
+;; Actual org export config (Adds four formats and htmlize for code coloring in
+;; all export formats.
+(use-package ox-gfm :ensure t)
+(use-package ox-rst :ensure t)
+(use-package ox-twbs :ensure t)
+(use-package ox-reveal :ensure t
+  :config (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+(use-package htmlize :ensure t)
+#+end_src
+*** Activate shell and python for babel
+#+begin_src emacs-lisp
+(setq org-confirm-babel-evaluate nil)
+(org-babel-do-load-languages 'org-babel-load-languages
+			     '((shell . t)
+			       (python . t)))
+(setq org-export-use-babel nil)
+(custom-set-variables '(org-babel-python-command "python3"))
+#+end_src
+*** Set basic configs
+#+begin_src emacs-lisp
+;; Looks
+(setq inhibit-startup-screen t)
+(setq inhibit-startup-buffer-menu t)
+;; (tool-bar-mode -1)
+(scroll-bar-mode -1)
+(custom-set-variables '(custom-enabled-themes '(misterioso)))
+;; Orgmode looks
+(custom-set-variables '(org-startup-with-inline-images t))
+(custom-set-variables '(org-image-actual-width 100))
+(custom-set-variables '(org-startup-folded t))
+(use-package org-bullets :ensure t :hook (org-mode . org-bullets-mode))
+;; Disable weird autoindent behaviors in orgmode
+(add-hook 'org-mode-hook (lambda () (electric-indent-mode 0)))
+(setq org-edit-src-content-indentation 0)
+
+;; Cursor
+(custom-set-variables '(cursor-type '(bar . 4)))
+(custom-set-faces '(cursor ((t (:background "SlateGray3")))))
+(blink-cursor-mode)
+
+;; Higlight current line
+;; Looks good in some themes but not others
+;; (global-hl-line-mode 1)
+
+;; Smooth scrolling and keep cursor 10 lines away from top and bottom
+(setq scroll-step 1)
+(setq-default scroll-margin 10)
+
+;; Visual line mode with chars to show visual wrapping
+(custom-set-variables '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
+(global-visual-line-mode 1)
+
+;; MISC
+(custom-set-variables '(vc-follow-symlinks t))
+(setq-default fill-column 80)
+(custom-set-variables '(indent-tabs-mode nil))
+#+end_src
+*** Evil-mode
+#+begin_src emacs-lisp
+(use-package evil
+  :ensure t
+  :init (setq evil-want-C-i-jump nil)
+  (setq evil-want-C-u-scroll t)
+  :config (evil-mode 1)
+
+  (setq evil-default-state 'emacs)
+  (setq evil-insert-state-modes nil)
+  (setq evil-motion-state-modes nil)
+  (setq evil-normal-state-modes '(fundamental-mode
+				  conf-mode
+				  prog-mode
+				  text-mode
+				  dired))
+  (add-hook 'with-editor-mode-hook 'evil-insert-state)
+
+  (setq evil-insert-state-cursor '((bar . 2) "lime green")
+	evil-normal-state-cursor '(box "yellow"))
+
+  (add-hook 'evil-insert-state-exit-hook (lambda () (blink-cursor-mode 0)))
+  (add-hook 'evil-insert-state-entry-hook (lambda () (blink-cursor-mode 1)))
+  (setq blink-cursor-blinks 0)
+  (blink-cursor-mode 0))
+#+end_src
+*** Helm
+#+begin_src emacs-lisp
+(use-package helm :ensure t
+  :config
+  (require 'helm-config)
+  (helm-mode 1)
+  :bind (("M-x" . helm-M-x)
+	 ("C-x C-f" . helm-find-files)
+	 ("C-x C-r" . helm-recentf)
+	 ("C-h C-i" . helm-info)
+	 ("C-x C-b" . helm-buffers-list)
+	 ("C-c g" . helm-grep-do-git-grep)))
+#+end_src
+*** Which key
+#+begin_src emacs-lisp
+(use-package which-key :ensure t :config (which-key-mode))
+#+end_src
+
+* APPENDIX
+** rant
+I am a vim user.
+
+Note on the UNIX philosophy:
+
+Vim does one thing well : I is good at being a quick editor that understands all
+the languages with almost no configuration.
+
+Emacs does one thing well : The thing that it does well is not starting fast.  I
+is really bad at not requiring any configuration.  Compare my vimrc of a
+lifetime with an emacs config that has the bare minimum.
+
+It is an interpreter for a programming language (elisp) 
+
+
+#+begin_quote
+Les obstacles que les gens comme moi mentionnent pour l'utilisation de Emacs
+sont triviaux à surmonter:
+- Emacs n'est pas vim : Solution evil-mode
+- Emacs ne pars pas vite : Solution : j'ai jamais dit d'arrêter d'utiliser vim,
+je vois pas c'est quoi le problème.
+- Emacs requiert l'investissement d'une vie à configurer : T'es un utilisateur
+de vim, tu peux prendre une config que j'ai faite spécialement pour toi
+#+end_quote
+
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/evil-config.el][evil-config.el]]       | 42 | Install and configure evil-mode                 |
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/org-export-config.el][org-export-config.el]] | 19 | Install packages for exporting to other formats |
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/basic-configs.el][basic-configs.el]]     | 31 | Make emacs normales                             |
+| [[https://gitlab.science.gc.ca/phc001/emacs-configs/blob/master/elisp/babel-config.el][babel-config.el]]      |  5 | Activate babel because it is not on by default  |
+
+There is nothing that is "personal" to me in these config files.  They were made
+to be used by other people and have been tested by myself (advanced experienced
+vim user), François Fortin (intermediate experienced vim user) Sébastien
+Fortier (non-vim non-emacs user and Michel Van Eeckhout (emacs user).
+
+With the difference of using evil-mode or not, all four of us are able to use
+emacs to do cool orgmode stuff without emacs getting in our way.

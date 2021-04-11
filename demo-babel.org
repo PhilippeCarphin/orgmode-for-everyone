@@ -1,0 +1,72 @@
+#+TITLE: Babel demo
+
+* Config
+
+#+begin_src emacs-lisp
+;; Activate languages for executing source blocks
+(org-babel-do-load-languages 'org-babel-load-languages
+			     '((shell . t)
+			       (python . t)))
+
+;; Get rid of the prompt that asks us if we want to evaluate code blocks
+(setq org-confirm-babel-evaluate nil)
+
+;; Disable automatic execution when exporting
+;; (setq org-export-use-babel nil)
+
+;; Use python3 as the interpreter for python source blocks
+(custom-set-variables '(org-babel-python-command "python3"))
+#+end_src
+
+* Demo
+
+** Shell
+
+*** Simple
+#+begin_src shell :exports both :results output
+ls
+#+end_src
+
+#+RESULTS:
+| #demo-babel.org#    |
+| #main.org#          |
+| demo-babel.html     |
+| demo-babel.html~    |
+| demo-babel.org      |
+| demo-babel.org~     |
+| main.org            |
+| org-export-demo.org |
+
+*** Cooler
+
+#+begin_src shell :dir ~/.emacs.d :results output :exports both
+tree -L 1 elpa | head
+echo "..."
+#+end_src
+
+#+RESULTS:
+#+begin_example
+elpa
+├── aggressive-indent-20200824.2352
+├── archives
+├── async-20210117.718
+├── bind-key-20210210.1609
+├── cmake-mode-20210104.1831
+├── command-log-mode-20160413.447
+├── company-20210405.2354
+├── dash-20210330.1544
+├── elfeed-20210309.2323
+...
+#+end_example
+
+
+** Python
+
+#+begin_src python :var w="World" :results output
+def greet(greeting, person):
+    print(f'{greeting} {person}')
+greet("hello", w)
+#+end_src
+
+#+RESULTS:
+: hello World
